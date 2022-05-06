@@ -8,3 +8,5 @@
  * Text in the header of the application
  */
 export const HEADER_TEXT = 'Applications';
+
+export const NETWORK_ERROR_TEXT = 'Network error';

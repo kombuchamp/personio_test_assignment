@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CandidatesDataEntry } from '../../types/CandidatesDataEntry';
+import { CandidatesDataEntryDTO } from '../../types/CandidatesDataEntryDTO';
 
 export type Sorting = {
-    sortBy: keyof CandidatesDataEntry | undefined;
+    sortBy: keyof CandidatesDataEntryDTO | undefined;
 };
 
 const initialState: Sorting = {

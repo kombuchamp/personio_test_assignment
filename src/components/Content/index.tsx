@@ -1,25 +1,51 @@
 import React, { FC } from 'react';
-import { API } from '../../services/API';
-import { Grid } from '@mui/material';
+import { useCandidatesData } from '../../services/API';
+import { Grid, Paper, Typography } from '@mui/material';
+import { LoadingOverlay } from '../LoadingOverlay';
+import SignalWifiStatusbarConnectedNoInternet4Icon from '@mui/icons-material/SignalWifiStatusbarConnectedNoInternet4';
+import { NETWORK_ERROR_TEXT } from '../../const/texts';
+import { CandidatesDataGrid } from '../DataGrid';
 
 export const Content: FC = () => {
-    // NOTE: RTK Query caches requests internally. Object "data" has persistent reference
-    const { isLoading, isError, data } = API.useFetchTableDataQuery();
+    const { data, isLoading, isError } = useCandidatesData();
 
     if (isLoading) {
-        return <div>loading</div>;
+        return <LoadingOverlay />;
     }
 
     if (isError || data === undefined) {
-        return <div>some error</div>;
+        // NOTE: for simplicity I just put network error there.
+        // TODO: display concrete error here
+
+        return (
+            <Grid container direction={'column'} alignItems={'center'}>
+                <Grid item>
+                    <Typography variant={'h4'} component={'h2'} color={'error'}>
+                        {NETWORK_ERROR_TEXT}
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <SignalWifiStatusbarConnectedNoInternet4Icon
+                        fontSize={'large'}
+                        color={'error'}
+                    />
+                </Grid>
+            </Grid>
+        );
     }
     return (
-        <Grid container>
-            {data.data.map((val) => (
-                <Grid item sx={{ p: 1 }} xs={12}>
-                    <pre>{JSON.stringify(val, null, 2)}</pre>
-                </Grid>
-            ))}
-        </Grid>
+        <Paper
+            elevation={3}
+            sx={{
+                flexGrow: 1,
+                flexShrink: 1,
+                mx: 1,
+                padding: 2,
+                width: '100%',
+                overflow: 'auto',
+            }}
+        >
+            <CandidatesDataGrid data={data} />
+        </Paper>
     );
 };

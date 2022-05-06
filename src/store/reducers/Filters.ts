@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CandidatesDataEntry } from '../../types/CandidatesDataEntry';
+import { CandidatesDataEntryDTO } from '../../types/CandidatesDataEntryDTO';
 
 export type Filters = {
-    name: CandidatesDataEntry['name'];
-    status: CandidatesDataEntry['status'] | '';
-    positionApplied: CandidatesDataEntry['position_applied'];
+    name: CandidatesDataEntryDTO['name'];
+    status: CandidatesDataEntryDTO['status'] | '';
+    positionApplied: CandidatesDataEntryDTO['position_applied'];
 };
 
 const initialState: Filters = {
