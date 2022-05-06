@@ -1,0 +1,6 @@
+.DataGrid__col {
+    overflow: hidden;
+    max-width: 300px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
