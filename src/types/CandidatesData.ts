@@ -1,3 +1,3 @@
 import { CandidatesDataEntry } from './CandidatesDataEntry';
 
-export type CandidatesData = CandidatesDataEntry[];
+export type CandidatesData = { data: CandidatesDataEntry[] };
