@@ -5,10 +5,18 @@ import {
     TableCell,
     TableHead,
     TableRow,
+    TableSortLabel,
 } from '@mui/material';
 import { CandidatesData } from '../../types/CandidatesData';
 import { CandidatesDataEntry } from '../../types/CandidatesDataEntry';
 import css from './index.module.css';
+import { Filters } from '../../store/reducers/Filters';
+import {
+    sortBy,
+    Sorting,
+    switchSortDirection,
+} from '../../store/reducers/Sorting';
+import { useTypedDispatch } from '../../hooks/redux-helpers';
 
 const COLUMNS: (keyof CandidatesDataEntry)[] = [
     'name',
@@ -18,6 +26,12 @@ const COLUMNS: (keyof CandidatesDataEntry)[] = [
     'positionApplied',
     'applicationDate',
     'status',
+];
+
+const SORTABLE_COLUMNS: (keyof CandidatesDataEntry)[] = [
+    'positionApplied',
+    'yearsOfExperience',
+    'applicationDate',
 ];
 
 const COLUMN_NAMES: Partial<Record<keyof CandidatesDataEntry, string>> = {
@@ -30,15 +44,40 @@ const COLUMN_NAMES: Partial<Record<keyof CandidatesDataEntry, string>> = {
     status: 'Status',
 };
 
-export const CandidatesDataGrid: FC<{ data: CandidatesData }> = ({ data }) => {
+export const CandidatesDataGrid: FC<{
+    data: CandidatesData;
+    filters: Filters;
+    sorting: Sorting;
+}> = ({ data, filters, sorting }) => {
+    const dispatch = useTypedDispatch();
+
     return (
         <Table>
             <TableHead>
                 <TableRow>
                     {COLUMNS.map((column) => {
                         return (
-                            <TableCell key={column}>
-                                <b>{COLUMN_NAMES[column]}</b>
+                            <TableCell
+                                className={css.DataGrid__headerCell}
+                                key={column}
+                            >
+                                {SORTABLE_COLUMNS.includes(column) ? (
+                                    <TableSortLabel
+                                        active={sorting.sortBy === column}
+                                        direction={sorting.direction}
+                                        onClick={() => {
+                                            if (sorting.sortBy !== column) {
+                                                dispatch(sortBy(column));
+                                                return;
+                                            }
+                                            dispatch(switchSortDirection());
+                                        }}
+                                    >
+                                        <b>{COLUMN_NAMES[column]}</b>
+                                    </TableSortLabel>
+                                ) : (
+                                    <b>{COLUMN_NAMES[column]}</b>
+                                )}
                             </TableCell>
                         );
                     })}

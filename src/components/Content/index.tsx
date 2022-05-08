@@ -5,9 +5,13 @@ import { LoadingOverlay } from '../LoadingOverlay';
 import SignalWifiStatusbarConnectedNoInternet4Icon from '@mui/icons-material/SignalWifiStatusbarConnectedNoInternet4';
 import { NETWORK_ERROR_TEXT } from '../../const/texts';
 import { CandidatesDataGrid } from '../DataGrid';
+import { useTypedSelector } from '../../hooks/redux-helpers';
 
 export const Content: FC = () => {
     const { data, isLoading, isError } = useCandidatesData();
+
+    const filters = useTypedSelector((store) => store.filtersReducer);
+    const sorting = useTypedSelector((store) => store.sortingReducer);
 
     if (isLoading) {
         return <LoadingOverlay />;
@@ -45,7 +49,11 @@ export const Content: FC = () => {
                 overflow: 'auto',
             }}
         >
-            <CandidatesDataGrid data={data} />
+            <CandidatesDataGrid
+                data={data}
+                filters={filters}
+                sorting={sorting}
+            />
         </Paper>
     );
 };

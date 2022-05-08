@@ -4,3 +4,6 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+.DataGrid__headerCell {
+    user-select: none;
+}
