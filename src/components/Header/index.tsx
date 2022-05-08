@@ -4,6 +4,11 @@ import PersonIcon from '@mui/icons-material/Person';
 import { HEADER_TEXT } from '../../const/texts';
 import { ThemeSwitcher } from '../ThemeSwitcher';
 
+/**
+ * Header of the application
+ *
+ * @constructor
+ */
 export const Header: FC = () => {
     return (
         <AppBar position={'static'}>

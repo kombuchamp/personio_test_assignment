@@ -4,6 +4,12 @@ import { CandidatesDataEntry } from '../../../../types/CandidatesDataEntry';
 import { COLUMN_FILTER_COMPARATORS } from './filterComparators';
 import { FILTERABLE_COLUMNS } from '../../const';
 
+/**
+ * Applies filters to provided data
+ *
+ * @param data
+ * @param filters
+ */
 export const applyFilters = (data: CandidatesData, filters: Filters) => {
     return data.filter((entry) => {
         for (const column of FILTERABLE_COLUMNS) {

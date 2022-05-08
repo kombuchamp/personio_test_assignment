@@ -3,6 +3,11 @@ import { FC } from 'react';
 import { useTypedDispatch, useTypedSelector } from '../../hooks/redux-helpers';
 import { setTheme } from '../../store/reducers/Theme';
 
+/**
+ * Switcher element for changing theme
+ *
+ * @constructor
+ */
 export const ThemeSwitcher: FC = () => {
     const { theme } = useTypedSelector((store) => store.themeReducer);
     const dispatch = useTypedDispatch();

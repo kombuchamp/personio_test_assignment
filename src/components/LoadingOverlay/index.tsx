@@ -1,6 +1,11 @@
 import { FC } from 'react';
 import { Backdrop, CircularProgress } from '@mui/material';
 
+/**
+ * Overlay that is shown when content is loading
+ *
+ * @constructor
+ */
 export const LoadingOverlay: FC = () => {
     return (
         <Backdrop

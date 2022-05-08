@@ -13,6 +13,10 @@ const stringComparator = (value: string, filteredValue: string) => {
     return value.toUpperCase().startsWith(filteredValue.toUpperCase());
 };
 
+/**
+ * Comparator functions for filtering
+ *
+ */
 export const COLUMN_FILTER_COMPARATORS: Record<
     keyof Filters,
     FilterComparator

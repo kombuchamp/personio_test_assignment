@@ -3,7 +3,10 @@ import { SavedParametersObject } from './types';
 import { SAVED_PARAMETERS_PARSERS } from './persistedDataParsers';
 import { DEFAULT_SAVED_PARAMETERS_OBJECT, SAVED_PARAMETERS } from './const';
 
-export class DataSerializer {
+/**
+ * Saves and restores persist-able data from application state to query params
+ */
+export class QueryParamsStoreSerializer {
     static saveData(data: RootState) {
         const { sortBy, direction } = data.sortingReducer;
         const { positionApplied, name, status } = data.filtersReducer;

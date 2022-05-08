@@ -7,6 +7,10 @@ type SortingComparator = (
     b: CandidatesDataEntry
 ) => number;
 
+/**
+ * Comparator functions for sorting
+ *
+ */
 export const COLUMN_SORTING_COMPARATORS: Record<
     SortableColumn,
     (direction: SortDirection) => SortingComparator

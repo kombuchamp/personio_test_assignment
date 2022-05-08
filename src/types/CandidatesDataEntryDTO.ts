@@ -1,5 +1,9 @@
 import { Status } from './Status';
 
+/**
+ * Entry in candidates data returned from a server
+ *
+ */
 export type CandidatesDataEntryDTO = {
     id: number;
     name: string;

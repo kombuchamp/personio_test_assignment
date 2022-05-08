@@ -21,6 +21,21 @@ import { applySorting } from './utils/sorting/applySorting';
 import { COLUMN_NAMES, COLUMNS } from './const';
 import { isSortableColumn } from './utils/sorting/isSortableColumn';
 
+/**
+ * Displays table with applications data
+ *
+ * NOTE: I decided to acquire data, filters and sorting parameters through the props here
+ * and rely on React.memo to avoid redundant calculations (renders, filters, sortings)
+ * This way it renders everytime one of these three change, so I dont' need to run effects or useMemo-es here
+ * for that cause.
+ * In my opinion, it makes it easier to read the components code, easier to debounce values (see Content component)
+ * and it will be probably easier to opt-in for server-side filtering and sorting
+ *
+ * @param data
+ * @param filters
+ * @param sorting
+ * @constructor
+ */
 const CandidatesDataGridInternal: FC<{
     data: CandidatesData;
     filters: Filters;

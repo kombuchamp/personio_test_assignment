@@ -21,6 +21,11 @@ const STATUS_FILTERS: Filters['status'][] = [
     'waiting',
 ];
 
+/**
+ * Component for setting filters
+ *
+ * @constructor
+ */
 export const TableFilters: FC = () => {
     const dispatch = useTypedDispatch();
     const { positionApplied, status, name } = useTypedSelector(

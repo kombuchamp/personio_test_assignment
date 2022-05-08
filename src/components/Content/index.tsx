@@ -8,6 +8,11 @@ import { CandidatesDataGrid } from '../CandidatesDataGrid';
 import { useTypedSelector } from '../../hooks/redux-helpers';
 import { useDebounced } from '../../hooks/useDebounced';
 
+/**
+ * Main content of the application
+ *
+ * @constructor
+ */
 export const Content: FC = () => {
     const { data, isLoading, isError } = useCandidatesData();
 
@@ -22,7 +27,7 @@ export const Content: FC = () => {
     }
 
     if (isError || data === undefined) {
-        // NOTE: for simplicity I just put network error here.
+        // NOTE: for simplicity I just put network error here, it could be more concrete
         return (
             <Grid container direction={'column'} alignItems={'center'}>
                 <Grid item>
