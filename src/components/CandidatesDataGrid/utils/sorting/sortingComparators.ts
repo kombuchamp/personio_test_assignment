@@ -1,5 +1,6 @@
 import { CandidatesDataEntry } from '../../../../types/CandidatesDataEntry';
-import { SortableColumn } from '../../../../store/reducers/Sorting';
+import { SortableColumn } from '../../../../types/SortableColumn';
+import { SortDirection } from '../../../../types/SortDirection';
 
 type SortingComparator = (
     a: CandidatesDataEntry,
@@ -8,7 +9,7 @@ type SortingComparator = (
 
 export const COLUMN_SORTING_COMPARATORS: Record<
     SortableColumn,
-    (direction: 'asc' | 'desc') => SortingComparator
+    (direction: SortDirection) => SortingComparator
 > = {
     positionApplied: (direction) => (a, b) => {
         const { positionApplied: positionAppliedA } = a;

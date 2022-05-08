@@ -1,9 +1,6 @@
-import { CandidatesDataEntry } from '../../../../types/CandidatesDataEntry';
-import { SortableColumn } from '../../../../store/reducers/Sorting';
 import { SORTABLE_COLUMNS } from '../../const';
+import { SortableColumn } from '../../../../types/SortableColumn';
 
-export function isSortableColumn(
-    column: keyof CandidatesDataEntry
-): column is SortableColumn {
+export function isSortableColumn(column: unknown): column is SortableColumn {
     return SORTABLE_COLUMNS.includes(column as SortableColumn);
 }

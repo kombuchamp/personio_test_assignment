@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CandidatesDataEntry } from '../../types/CandidatesDataEntry';
+import { PERSISTED_STORE_DATA } from '../../const/persistedStoreData';
 
 export type Filters = {
     name: CandidatesDataEntry['name'];
@@ -8,9 +9,9 @@ export type Filters = {
 };
 
 const initialState: Filters = {
-    name: '',
-    status: '',
-    positionApplied: '',
+    name: PERSISTED_STORE_DATA.name,
+    status: PERSISTED_STORE_DATA.status,
+    positionApplied: PERSISTED_STORE_DATA.positionApplied,
 };
 
 export const filtersSlice = createSlice({

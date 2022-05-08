@@ -1,19 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CandidatesDataEntry } from '../../types/CandidatesDataEntry';
-
-export type SortableColumn =
-    | 'positionApplied'
-    | 'yearsOfExperience'
-    | 'applicationDate';
+import { SortableColumn } from '../../types/SortableColumn';
+import { PERSISTED_STORE_DATA } from '../../const/persistedStoreData';
+import { SortDirection } from '../../types/SortDirection';
 
 export type Sorting = {
     sortBy: Extract<keyof CandidatesDataEntry, SortableColumn> | undefined;
-    direction: 'asc' | 'desc';
+    direction: SortDirection;
 };
 
 const initialState: Sorting = {
-    sortBy: undefined,
-    direction: 'asc',
+    sortBy: PERSISTED_STORE_DATA.sortBy,
+    direction: PERSISTED_STORE_DATA.direction,
 };
 
 export const sortingSlice = createSlice({

@@ -1,7 +1,6 @@
-import { SortableColumn, Sorting } from '../../../../store/reducers/Sorting';
-import { CandidatesDataEntry } from '../../../../types/CandidatesDataEntry';
 import { CandidatesData } from '../../../../types/CandidatesData';
 import { COLUMN_SORTING_COMPARATORS } from './sortingComparators';
+import { Sorting } from '../../../../store/reducers/Sorting';
 
 export const applySorting = (data: CandidatesData, sorting: Sorting) => {
     const { sortBy, direction } = sorting;

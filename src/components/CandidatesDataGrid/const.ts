@@ -1,6 +1,6 @@
 import { CandidatesDataEntry } from '../../types/CandidatesDataEntry';
 import { Filters } from '../../store/reducers/Filters';
-import { SortableColumn } from '../../store/reducers/Sorting';
+import { SortableColumn } from '../../types/SortableColumn';
 
 /**
  * Columns of displayed table

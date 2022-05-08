@@ -3,6 +3,7 @@ import { API } from '../services/API';
 import { filtersReducer } from './reducers/Filters';
 import { themeReducer } from './reducers/Theme';
 import { sortingReducer } from './reducers/Sorting';
+import { applyQueryParamsMiddleware } from './middleware/queryParamsMiddleware/applyQueryParamsMiddleware';
 
 const rootReducer = combineReducers({
     filtersReducer,
@@ -15,8 +16,11 @@ const rootReducer = combineReducers({
 export const setupStore = () => {
     return configureStore({
         reducer: rootReducer,
-        middleware: (getDefaultMiddleware) =>
-            getDefaultMiddleware().concat(API.middleware),
+        middleware: (getDefaultMiddleware) => [
+            ...getDefaultMiddleware(),
+            API.middleware,
+            applyQueryParamsMiddleware(),
+        ],
     });
 };
 
