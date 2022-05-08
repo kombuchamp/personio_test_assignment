@@ -1,9 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CandidatesDataEntryDTO } from '../../types/CandidatesDataEntryDTO';
 import { CandidatesDataEntry } from '../../types/CandidatesDataEntry';
 
+export type SortableColumn =
+    | 'positionApplied'
+    | 'yearsOfExperience'
+    | 'applicationDate';
+
 export type Sorting = {
-    sortBy: keyof CandidatesDataEntry | undefined;
+    sortBy: Extract<keyof CandidatesDataEntry, SortableColumn> | undefined;
     direction: 'asc' | 'desc';
 };
 

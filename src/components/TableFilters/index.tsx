@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import { Filters, setFilters } from '../../store/reducers/Filters';
 import { Status } from '../../types/Status';
+import { EMPTY_FILTER_TEXT } from '../../const/texts';
 
 const STATUS_FILTERS: Filters['status'][] = [
     '',
@@ -84,7 +85,7 @@ export const TableFilters: FC = () => {
                         >
                             {STATUS_FILTERS.map((status) => (
                                 <MenuItem key={status} value={status}>
-                                    {status || 'None'}
+                                    {status || EMPTY_FILTER_TEXT}
                                 </MenuItem>
                             ))}
                         </Select>

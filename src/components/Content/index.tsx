@@ -4,7 +4,7 @@ import { Grid, Paper, Typography } from '@mui/material';
 import { LoadingOverlay } from '../LoadingOverlay';
 import SignalWifiStatusbarConnectedNoInternet4Icon from '@mui/icons-material/SignalWifiStatusbarConnectedNoInternet4';
 import { NETWORK_ERROR_TEXT } from '../../const/texts';
-import { CandidatesDataGrid } from '../DataGrid';
+import { CandidatesDataGrid } from '../CandidatesDataGrid';
 import { useTypedSelector } from '../../hooks/redux-helpers';
 
 export const Content: FC = () => {
