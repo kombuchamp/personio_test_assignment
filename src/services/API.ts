@@ -8,7 +8,7 @@ import {
 } from '../const/urls';
 import { CandidatesDataDTO } from '../types/CandidatesDataDTO';
 import { CandidatesData } from '../types/CandidatesData';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 const BASE_URL = isDev ? API_MOCK_URL : API_URL;
 const CANDIDATES_DATA_ENDPOINT = isDev
@@ -55,16 +55,24 @@ export const useCandidatesData: UseCandidatesData = () => {
     // NOTE: RTK Query caches requests internally. Object "data" has persistent reference
     const { isLoading, isError, data } = API.useFetchTableDataQuery();
 
+    const [isCustomError, setCustomError] = useState(false);
+
     const mappedData = useMemo(() => {
         if (data === undefined) {
+            setCustomError(false);
             return undefined;
+        } else if (data.error) {
+            // @see CandidatesDataDTO
+            setCustomError(true);
+            return;
         }
+        setCustomError(false);
         return parseCandidatesData(data);
     }, [data]);
 
     return {
         isLoading,
-        isError,
+        isError: isError || isCustomError,
         data: mappedData,
     };
 };
