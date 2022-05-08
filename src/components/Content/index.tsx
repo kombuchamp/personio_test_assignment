@@ -6,11 +6,15 @@ import SignalWifiStatusbarConnectedNoInternet4Icon from '@mui/icons-material/Sig
 import { NETWORK_ERROR_TEXT } from '../../const/texts';
 import { CandidatesDataGrid } from '../CandidatesDataGrid';
 import { useTypedSelector } from '../../hooks/redux-helpers';
+import { useDebounced } from '../../hooks/useDebounced';
 
 export const Content: FC = () => {
     const { data, isLoading, isError } = useCandidatesData();
 
-    const filters = useTypedSelector((store) => store.filtersReducer);
+    const filters = useDebounced(
+        useTypedSelector((store) => store.filtersReducer),
+        500
+    );
     const sorting = useTypedSelector((store) => store.sortingReducer);
 
     if (isLoading) {
@@ -18,9 +22,7 @@ export const Content: FC = () => {
     }
 
     if (isError || data === undefined) {
-        // NOTE: for simplicity I just put network error there.
-        // TODO: display concrete error here
-
+        // NOTE: for simplicity I just put network error here.
         return (
             <Grid container direction={'column'} alignItems={'center'}>
                 <Grid item>

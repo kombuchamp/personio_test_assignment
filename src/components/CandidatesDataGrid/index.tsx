@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import {
     Table,
     TableBody,
@@ -21,7 +21,7 @@ import { applySorting } from './utils/sorting/applySorting';
 import { COLUMN_NAMES, COLUMNS } from './const';
 import { isSortableColumn } from './utils/sorting/isSortableColumn';
 
-export const CandidatesDataGrid: FC<{
+const CandidatesDataGridInternal: FC<{
     data: CandidatesData;
     filters: Filters;
     sorting: Sorting;
@@ -84,3 +84,5 @@ export const CandidatesDataGrid: FC<{
         </Table>
     );
 };
+
+export const CandidatesDataGrid = memo(CandidatesDataGridInternal);
