@@ -37,8 +37,10 @@ export const Content: FC = () => {
                 </Grid>
                 <Grid item>
                     <SignalWifiStatusbarConnectedNoInternet4Icon
+                        onClick={() => window.location.reload()}
                         fontSize={'large'}
                         color={'error'}
+                        cursor={'pointer'}
                     />
                 </Grid>
             </Grid>
